@@ -1,0 +1,18 @@
+version: '3'
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGO_URI=mongodb+srv://achintyagupta1:ktpj4CFRaBVW8RJl@farm.jhv7x.mongodb.net/?retryWrites=true&w=majority&appName=farm
+      - JWT_SECRET=qwertyuioasdfghjklzxcvbnm
+    volumes:
+      - ./backend/uploads:/app/uploads
+
+  frontend:
+    build: ./frontend/polling-app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
